@@ -69,6 +69,7 @@ public class BubbleEntry extends Entry {
         this.mSize = size;
     }
 
+    @Override
     public BubbleEntry copy() {
 
         BubbleEntry c = new BubbleEntry(getX(), getY(), mSize, getData());

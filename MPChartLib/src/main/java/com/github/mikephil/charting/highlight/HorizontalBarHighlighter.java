@@ -28,8 +28,9 @@ public class HorizontalBarHighlighter extends BarHighlighter {
 		MPPointD pos = getValsForTouch(y, x);
 
 		Highlight high = getHighlightForX((float) pos.y, y, x);
-		if (high == null)
-			return null;
+		if (high == null) {
+            return null;
+        }
 
 		IBarDataSet set = barData.getDataSetByIndex(high.getDataSetIndex());
 		if (set.isStacked()) {
@@ -62,8 +63,9 @@ public class HorizontalBarHighlighter extends BarHighlighter {
 			}
 		}
 
-		if (entries.size() == 0)
-			return highlights;
+		if (entries.size() == 0) {
+            return highlights;
+        }
 
 		for (Entry e : entries) {
 			MPPointD pixels = mChart.getTransformer(

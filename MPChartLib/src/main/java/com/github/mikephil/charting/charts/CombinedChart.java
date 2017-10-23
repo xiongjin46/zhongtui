@@ -111,7 +111,9 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
             return null;
         } else {
             Highlight h = getHighlighter().getHighlight(x, y);
-            if (h == null || !isHighlightFullBarEnabled()) return h;
+            if (h == null || !isHighlightFullBarEnabled()) {
+                return h;
+            }
 
             // For isHighlightFullBarEnabled, remove stackIndex
             return new Highlight(h.getX(), h.getY(),
@@ -122,36 +124,41 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
 
     @Override
     public LineData getLineData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
         return mData.getLineData();
     }
 
     @Override
     public BarData getBarData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
         return mData.getBarData();
     }
 
     @Override
     public ScatterData getScatterData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
         return mData.getScatterData();
     }
 
     @Override
     public CandleData getCandleData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
         return mData.getCandleData();
     }
 
     @Override
     public BubbleData getBubbleData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
         return mData.getBubbleData();
     }
 
@@ -222,8 +229,9 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
      * @param order
      */
     public void setDrawOrder(DrawOrder[] order) {
-        if (order == null || order.length <= 0)
+        if (order == null || order.length <= 0) {
             return;
+        }
         mDrawOrder = order;
     }
 }

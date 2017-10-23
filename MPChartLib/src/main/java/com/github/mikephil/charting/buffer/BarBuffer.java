@@ -50,8 +50,9 @@ public class BarBuffer extends AbstractBuffer<IBarDataSet> {
 
             BarEntry e = data.getEntryForIndex(i);
 
-            if(e == null)
+            if(e == null) {
                 continue;
+            }
 
             float x = e.getX();
             float y = e.getY();
@@ -72,10 +73,11 @@ public class BarBuffer extends AbstractBuffer<IBarDataSet> {
                 }
 
                 // multiply the height of the rect with the phase
-                if (top > 0)
+                if (top > 0) {
                     top *= phaseY;
-                else
+                } else {
                     bottom *= phaseY;
+                }
 
                 addBar(left, top, right, bottom);
 

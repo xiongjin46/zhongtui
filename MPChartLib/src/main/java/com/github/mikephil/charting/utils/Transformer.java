@@ -76,10 +76,10 @@ public class Transformer {
 
         // offset.postTranslate(mOffsetLeft, getHeight() - mOffsetBottom);
 
-        if (!inverted)
+        if (!inverted) {
             mMatrixOffset.postTranslate(mViewPortHandler.offsetLeft(),
                     mViewPortHandler.getChartHeight() - mViewPortHandler.offsetBottom());
-        else {
+        } else {
             mMatrixOffset
                     .setTranslate(mViewPortHandler.offsetLeft(), -mViewPortHandler.offsetTop());
             mMatrixOffset.postScale(1.0f, -1.0f);
@@ -350,8 +350,9 @@ public class Transformer {
 
         Matrix m = getValueToPixelMatrix();
 
-        for (int i = 0; i < rects.size(); i++)
+        for (int i = 0; i < rects.size(); i++) {
             m.mapRect(rects.get(i));
+        }
     }
 
     protected Matrix mPixelToValueMatrixBuffer = new Matrix();

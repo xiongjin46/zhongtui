@@ -303,7 +303,7 @@ public final class ResponseParsers {
         public CompleteMultipartUploadResult parse(Response response) throws IOException {
             try {
                 CompleteMultipartUploadResult result = new CompleteMultipartUploadResult();
-                if (response.header(OSSHeaders.CONTENT_TYPE).equals("application/xml")) {
+                if ("application/xml".equals(response.header(OSSHeaders.CONTENT_TYPE))) {
                     result = parseCompleteMultipartUploadResponseXML(response.body().byteStream());
                 } else if (response.body() != null) {
                     result.setServerCallbackReturnBody(response.body().string());
@@ -355,9 +355,9 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equals("LastModified")) {
+            } else if ("LastModified".equals(name)) {
                 result.setLastModified(DateUtil.parseIso8601Date(checkChildNotNullAndGetValue(item)));
-            } else if (name.equals("ETag")) {
+            } else if ("ETag".equals(name)) {
                 result.setEtag(checkChildNotNullAndGetValue(item));
             }
         }
@@ -380,33 +380,33 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equals("Bucket")) {
+            } else if ("Bucket".equals(name)) {
                 result.setBucketName(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("Key")) {
+            } else if ("Key".equals(name)) {
                 result.setKey(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("UploadId")) {
+            } else if ("UploadId".equals(name)) {
                 result.setUploadId(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("PartNumberMarker")) {
+            } else if ("PartNumberMarker".equals(name)) {
                 String partNumberMarker = checkChildNotNullAndGetValue(item);
                 if (partNumberMarker != null) {
                     result.setPartNumberMarker(Integer.valueOf(partNumberMarker));
                 }
-            } else if (name.equals("NextPartNumberMarker")) {
+            } else if ("NextPartNumberMarker".equals(name)) {
                 String nextPartNumberMarker = checkChildNotNullAndGetValue(item);
                 if (nextPartNumberMarker != null) {
                     result.setNextPartNumberMarker(Integer.valueOf(nextPartNumberMarker));
                 }
-            } else if (name.equals("MaxParts")) {
+            } else if ("MaxParts".equals(name)) {
                 String maxParts = checkChildNotNullAndGetValue(item);
                 if (maxParts != null) {
                     result.setMaxParts(Integer.valueOf(maxParts));
                 }
-            } else if (name.equals("IsTruncated")) {
+            } else if ("IsTruncated".equals(name)) {
                 String isTruncated = checkChildNotNullAndGetValue(item);
                 if (isTruncated != null) {
                     result.setTruncated(Boolean.valueOf(isTruncated));
                 }
-            } else if (name.equals("Part")) {
+            } else if ("Part".equals(name)) {
                 NodeList partNodeList = item.getChildNodes();
                 PartSummary partSummary = new PartSummary();
                 for (int k = 0; k < partNodeList.getLength(); k++) {
@@ -414,16 +414,16 @@ public final class ResponseParsers {
                     String partItemName = partItem.getNodeName();
                     if (partItemName == null) {
                         continue;
-                    } else if (partItemName.equals("PartNumber")) {
+                    } else if ("PartNumber".equals(partItemName)) {
                         String partNumber = checkChildNotNullAndGetValue(partItem);
                         if (partNumber != null) {
                             partSummary.setPartNumber(Integer.valueOf(partNumber));
                         }
-                    } else if (partItemName.equals("LastModified")) {
+                    } else if ("LastModified".equals(partItemName)) {
                         partSummary.setLastModified(DateUtil.parseIso8601Date(checkChildNotNullAndGetValue(partItem)));
-                    } else if (partItemName.equals("ETag")) {
+                    } else if ("ETag".equals(partItemName)) {
                         partSummary.setETag(checkChildNotNullAndGetValue(partItem));
-                    } else if(partItemName.equals("Size")) {
+                    } else if("Size".equals(partItemName)) {
                         String size = checkChildNotNullAndGetValue(partItem);
                         if (size != null) {
                             partSummary.setSize(Integer.valueOf(size));
@@ -450,13 +450,13 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equalsIgnoreCase("Location")) {
+            } else if ("Location".equalsIgnoreCase(name)) {
                 result.setLocation(checkChildNotNullAndGetValue(item));
-            } else if (name.equalsIgnoreCase("Bucket")) {
+            } else if ("Bucket".equalsIgnoreCase(name)) {
                 result.setBucketName(checkChildNotNullAndGetValue(item));
-            } else if (name.equalsIgnoreCase("Key")) {
+            } else if ("Key".equalsIgnoreCase(name)) {
                 result.setObjectKey(checkChildNotNullAndGetValue(item));
-            } else if (name.equalsIgnoreCase("ETag")) {
+            } else if ("ETag".equalsIgnoreCase(name)) {
                 result.setETag(checkChildNotNullAndGetValue(item));
             }
         }
@@ -480,11 +480,11 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equalsIgnoreCase("UploadId")) {
+            } else if ("UploadId".equalsIgnoreCase(name)) {
                 result.setUploadId(checkChildNotNullAndGetValue(item));
-            } else if (name.equalsIgnoreCase("Bucket")) {
+            } else if ("Bucket".equalsIgnoreCase(name)) {
                 result.setBucketName(checkChildNotNullAndGetValue(item));
-            } else if (name.equalsIgnoreCase("Key")) {
+            } else if ("Key".equalsIgnoreCase(name)) {
                 result.setObjectKey(checkChildNotNullAndGetValue(item));
             }
         }
@@ -505,20 +505,20 @@ public final class ResponseParsers {
 
             if (name == null) {
                 continue;
-            } else if (name.equals("Key")) {
+            } else if ("Key".equals(name)) {
                 object.setKey(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("LastModified")) {
+            } else if ("LastModified".equals(name)) {
                 object.setLastModified(DateUtil.parseIso8601Date(checkChildNotNullAndGetValue(item)));
-            } else if (name.equals("Size")) {
+            } else if ("Size".equals(name)) {
                 String size = checkChildNotNullAndGetValue(item);
                 if (size != null) {
                     object.setSize(Integer.valueOf(size));
                 }
-            } else if (name.equals("ETag")) {
+            } else if ("ETag".equals(name)) {
                 object.setETag(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("Type")) {
+            } else if ("Type".equals(name)) {
                 object.setType(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("StorageClass")) {
+            } else if ("StorageClass".equals(name)) {
                 object.setStorageClass(checkChildNotNullAndGetValue(item));
             }
         }
@@ -531,7 +531,7 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equals("Prefix")) {
+            } else if ("Prefix".equals(name)) {
                 return checkChildNotNullAndGetValue(item);
             }
         }
@@ -557,27 +557,27 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equals("Owner")) {
+            } else if ("Owner".equals(name)) {
                 NodeList ownerList = item.getChildNodes();
                 for (int j = 0; j < ownerList.getLength(); j++) {
                     Node ownerItem = ownerList.item(j);
                     String ownerName = ownerItem.getNodeName();
                     if (ownerName == null) {
                         continue;
-                    } else if (ownerName.equals("ID")) {
+                    } else if ("ID".equals(ownerName)) {
                         result.setBucketOwnerID(checkChildNotNullAndGetValue(ownerItem));
-                    } else if (ownerName.equals("DisplayName")) {
+                    } else if ("DisplayName".equals(ownerName)) {
                         result.setBucketOwner(checkChildNotNullAndGetValue(ownerItem));
                     }
                 }
-            } else if (name.equals("AccessControlList")) {
+            } else if ("AccessControlList".equals(name)) {
                 NodeList aclList = item.getChildNodes();
                 for (int k = 0; k < aclList.getLength(); k++) {
                     Node aclItem = aclList.item(k);
                     String aclName = aclItem.getNodeName();
                     if (aclName == null) {
                         continue;
-                    } else if (aclName.equals("Grant")) {
+                    } else if ("Grant".equals(aclName)) {
                         result.setBucketACL(checkChildNotNullAndGetValue(aclItem));
                     }
                 }
@@ -607,34 +607,34 @@ public final class ResponseParsers {
             String name = item.getNodeName();
             if (name == null) {
                 continue;
-            } else if (name.equals("Name")) {
+            } else if ("Name".equals(name)) {
                 result.setBucketName(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("Prefix")) {
+            } else if ("Prefix".equals(name)) {
                 result.setPrefix(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("Marker")) {
+            } else if ("Marker".equals(name)) {
                 result.setMarker(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("Delimiter")) {
+            } else if ("Delimiter".equals(name)) {
                 result.setDelimiter(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("EncodingType")) {
+            } else if ("EncodingType".equals(name)) {
                 result.setEncodingType(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("MaxKeys")) {
+            } else if ("MaxKeys".equals(name)) {
                 String maxKeys = checkChildNotNullAndGetValue(item);
                 if (maxKeys != null) {
                     result.setMaxKeys(Integer.valueOf(maxKeys));
                 }
-            } else if (name.equals("NextMarker")) {
+            } else if ("NextMarker".equals(name)) {
                 result.setNextMarker(checkChildNotNullAndGetValue(item));
-            } else if (name.equals("IsTruncated")) {
+            } else if ("IsTruncated".equals(name)) {
                 String isTruncated = checkChildNotNullAndGetValue(item);
                 if (isTruncated != null) {
                     result.setTruncated(Boolean.valueOf(isTruncated));
                 }
-            } else if (name.equals("Contents")) {
+            } else if ("Contents".equals(name)) {
                 if (item.getChildNodes() == null) {
                     continue;
                 }
                 result.getObjectSummaries().add(parseObjectSummaryXML(item.getChildNodes()));
-            } else if (name.equals("CommonPrefixes")) {
+            } else if ("CommonPrefixes".equals(name)) {
                 if (item.getChildNodes() == null) {
                     continue;
                 }
@@ -648,11 +648,17 @@ public final class ResponseParsers {
     }
 
     public static String trimQuotes(String s) {
-        if (s == null) return null;
+        if (s == null) {
+            return null;
+        }
 
         s = s.trim();
-        if (s.startsWith("\"")) s = s.substring(1);
-        if (s.endsWith("\"")) s = s.substring(0, s.length() - 1);
+        if (s.startsWith("\"")) {
+            s = s.substring(1);
+        }
+        if (s.endsWith("\"")) {
+            s = s.substring(0, s.length() - 1);
+        }
 
         return s;
     }
@@ -724,18 +730,20 @@ public final class ResponseParsers {
                 for (int i = 0; i < list.getLength(); i++) {
                     Node item = list.item(i);
                     String name = item.getNodeName();
-                    if (name == null) continue;
+                    if (name == null) {
+                        continue;
+                    }
 
-                    if (name.equals("Code")) {
+                    if ("Code".equals(name)) {
                         code = checkChildNotNullAndGetValue(item);
                     }
-                    if (name.equals("Message")) {
+                    if ("Message".equals(name)) {
                         message = checkChildNotNullAndGetValue(item);
                     }
-                    if (name.equals("RequestId")) {
+                    if ("RequestId".equals(name)) {
                         requestId = checkChildNotNullAndGetValue(item);
                     }
-                    if (name.equals("HostId")) {
+                    if ("HostId".equals(name)) {
                         hostId = checkChildNotNullAndGetValue(item);
                     }
                 }

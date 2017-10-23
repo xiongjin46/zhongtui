@@ -88,11 +88,13 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
 
                 trans.rectValueToPixel(mBarShadowRectBuffer);
 
-                if (!mViewPortHandler.isInBoundsTop(mBarShadowRectBuffer.bottom))
+                if (!mViewPortHandler.isInBoundsTop(mBarShadowRectBuffer.bottom)) {
                     continue;
+                }
 
-                if (!mViewPortHandler.isInBoundsBottom(mBarShadowRectBuffer.top))
+                if (!mViewPortHandler.isInBoundsBottom(mBarShadowRectBuffer.top)) {
                     break;
+                }
 
                 mBarShadowRectBuffer.left = mViewPortHandler.contentLeft();
                 mBarShadowRectBuffer.right = mViewPortHandler.contentRight();
@@ -120,11 +122,13 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
 
         for (int j = 0; j < buffer.size(); j += 4) {
 
-            if (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 3]))
+            if (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 3])) {
                 break;
+            }
 
-            if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[j + 1]))
+            if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[j + 1])) {
                 continue;
+            }
 
             if (!isSingleColor) {
                 // Set the color for the currently drawn value. If the index
@@ -158,8 +162,9 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
 
                 IBarDataSet dataSet = dataSets.get(i);
 
-                if (!shouldDrawValues(dataSet))
+                if (!shouldDrawValues(dataSet)) {
                     continue;
+                }
 
                 boolean isInverted = mChart.isInverted(dataSet.getAxisDependency());
 
@@ -185,14 +190,17 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
 
                         float y = (buffer.buffer[j + 1] + buffer.buffer[j + 3]) / 2f;
 
-                        if (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 1]))
+                        if (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 1])) {
                             break;
+                        }
 
-                        if (!mViewPortHandler.isInBoundsX(buffer.buffer[j]))
+                        if (!mViewPortHandler.isInBoundsX(buffer.buffer[j])) {
                             continue;
+                        }
 
-                        if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[j + 1]))
+                        if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[j + 1])) {
                             continue;
+                        }
 
                         BarEntry entry = dataSet.getEntryForIndex(j / 4);
                         float val = entry.getY();
@@ -256,14 +264,17 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
                         // in between
                         if (vals == null) {
 
-                            if (!mViewPortHandler.isInBoundsTop(buffer.buffer[bufferIndex + 1]))
+                            if (!mViewPortHandler.isInBoundsTop(buffer.buffer[bufferIndex + 1])) {
                                 break;
+                            }
 
-                            if (!mViewPortHandler.isInBoundsX(buffer.buffer[bufferIndex]))
+                            if (!mViewPortHandler.isInBoundsX(buffer.buffer[bufferIndex])) {
                                 continue;
+                            }
 
-                            if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[bufferIndex + 1]))
+                            if (!mViewPortHandler.isInBoundsBottom(buffer.buffer[bufferIndex + 1])) {
                                 continue;
+                            }
 
                             float val = entry.getY();
                             String formattedValue = formatter.getFormattedValue(val,
@@ -358,14 +369,17 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
                                         + (drawBelow ? negOffset : posOffset);
                                 float y = (buffer.buffer[bufferIndex + 1] + buffer.buffer[bufferIndex + 3]) / 2f;
 
-                                if (!mViewPortHandler.isInBoundsTop(y))
+                                if (!mViewPortHandler.isInBoundsTop(y)) {
                                     break;
+                                }
 
-                                if (!mViewPortHandler.isInBoundsX(x))
+                                if (!mViewPortHandler.isInBoundsX(x)) {
                                     continue;
+                                }
 
-                                if (!mViewPortHandler.isInBoundsBottom(y))
+                                if (!mViewPortHandler.isInBoundsBottom(y)) {
                                     continue;
+                                }
 
                                 if (dataSet.isDrawValuesEnabled()) {
                                     drawValue(c, formattedValue, x, y + halfTextHeight, color);

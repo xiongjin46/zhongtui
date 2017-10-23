@@ -230,6 +230,7 @@ public class Easing {
 
         public static final EasingFunction EaseInQuart = new EasingFunction() {
 
+            @Override
             public float getInterpolation(float input) {
                 return input * input * input * input;
             }
@@ -237,6 +238,7 @@ public class Easing {
 
         public static final EasingFunction EaseOutQuart = new EasingFunction() {
 
+            @Override
             public float getInterpolation(float input) {
                 input--;
                 return -(input * input * input * input - 1f);

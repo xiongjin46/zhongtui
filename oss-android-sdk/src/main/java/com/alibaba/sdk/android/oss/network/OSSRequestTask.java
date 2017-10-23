@@ -254,7 +254,7 @@ public class OSSRequestTask<T extends OSSResult> implements Callable<T> {
 
         if (exception == null && (response.code() == 203 || response.code() >= 300)) {
             try {
-                exception = ResponseParsers.parseResponseErrorXML(response, request.method().equals("HEAD"));
+                exception = ResponseParsers.parseResponseErrorXML(response, "HEAD".equals(request.method()));
             } catch (IOException e) {
                 exception = new ClientException(e.getMessage(), e);
             }

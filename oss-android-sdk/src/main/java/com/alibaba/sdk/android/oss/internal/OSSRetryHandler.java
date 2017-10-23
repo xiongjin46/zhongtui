@@ -50,7 +50,7 @@ public class OSSRetryHandler {
             return OSSRetryType.OSSRetryTypeShouldRetry;
         } else if (e instanceof ServiceException) {
             ServiceException serviceException = (ServiceException) e;
-            if (serviceException.getErrorCode() != null && serviceException.getErrorCode().equalsIgnoreCase("RequestTimeTooSkewed")) {
+            if (serviceException.getErrorCode() != null && "RequestTimeTooSkewed".equalsIgnoreCase(serviceException.getErrorCode())) {
                 return OSSRetryType.OSSRetryTypeShouldFixedTimeSkewedAndRetry;
             } else if (serviceException.getStatusCode() >= 500){
                 return OSSRetryType.OSSRetryTypeShouldRetry;

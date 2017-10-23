@@ -82,10 +82,12 @@ public class LimitLine extends ComponentBase {
      */
     public void setLineWidth(float width) {
 
-        if (width < 0.2f)
+        if (width < 0.2f) {
             width = 0.2f;
-        if (width > 12.0f)
+        }
+        if (width > 12.0f) {
             width = 12.0f;
+        }
         mLineWidth = Utils.convertDpToPixel(width);
     }
 

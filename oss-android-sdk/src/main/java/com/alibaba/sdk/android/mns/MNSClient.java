@@ -133,61 +133,73 @@ public class MNSClient implements MNS {
         return internalRequestOperation.getQueueAttr(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<ListQueueResult> asyncListQueue(
             ListQueueRequest request, MNSCompletedCallback<ListQueueRequest, ListQueueResult> completedCallback) {
         return internalRequestOperation.listQueue(request, completedCallback);
     }
 
+    @Override
     public ListQueueResult listQueue(ListQueueRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.listQueue(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<SendMessageResult> asyncSendMessage(
             SendMessageRequest request, MNSCompletedCallback<SendMessageRequest, SendMessageResult> completedCallback) {
         return internalRequestOperation.sendMessage(request, completedCallback);
     }
 
+    @Override
     public SendMessageResult sendMessage(SendMessageRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.sendMessage(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<ReceiveMessageResult> asyncReceiveMessage(
             ReceiveMessageRequest request, MNSCompletedCallback<ReceiveMessageRequest, ReceiveMessageResult> completedCallback){
         return internalRequestOperation.receiveMessage(request, completedCallback);
     }
 
+    @Override
     public ReceiveMessageResult receiveMessage(ReceiveMessageRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.receiveMessage(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<DeleteMessageResult> asyncDeleteMessage(
             DeleteMessageRequest request, MNSCompletedCallback<DeleteMessageRequest, DeleteMessageResult> completedCallback){
         return internalRequestOperation.deleteMessage(request, completedCallback);
     }
 
+    @Override
     public DeleteMessageResult deleteMessage(DeleteMessageRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.deleteMessage(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<PeekMessageResult> asyncPeekMessage(
             PeekMessageRequest request, MNSCompletedCallback<PeekMessageRequest, PeekMessageResult> completedCallback){
         return internalRequestOperation.peekMessage(request, completedCallback);
     }
 
+    @Override
     public PeekMessageResult peekMessage(PeekMessageRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.peekMessage(request, null).getResult();
     }
 
+    @Override
     public MNSAsyncTask<ChangeMessageVisibilityResult> asyncChangeMessageVisibility(
             ChangeMessageVisibilityRequest request, MNSCompletedCallback<ChangeMessageVisibilityRequest, ChangeMessageVisibilityResult> completedCallback) {
         return internalRequestOperation.changeMessageVisibility(request, completedCallback);
     }
 
+    @Override
     public ChangeMessageVisibilityResult changeMessageVisibility(ChangeMessageVisibilityRequest request)
             throws ClientException, ServiceException {
         return internalRequestOperation.changeMessageVisibility(request, null).getResult();

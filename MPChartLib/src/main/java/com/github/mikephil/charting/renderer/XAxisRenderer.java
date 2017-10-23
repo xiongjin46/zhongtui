@@ -104,8 +104,9 @@ public class XAxisRenderer extends AxisRenderer {
     @Override
     public void renderAxisLabels(Canvas c) {
 
-        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled())
+        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
         float yoffset = mXAxis.getYOffset();
 
@@ -148,8 +149,9 @@ public class XAxisRenderer extends AxisRenderer {
     @Override
     public void renderAxisLine(Canvas c) {
 
-        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled())
+        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled()) {
             return;
+        }
 
         mAxisLinePaint.setColor(mXAxis.getAxisLineColor());
         mAxisLinePaint.setStrokeWidth(mXAxis.getAxisLineWidth());
@@ -211,8 +213,9 @@ public class XAxisRenderer extends AxisRenderer {
                         float width = Utils.calcTextWidth(mAxisLabelPaint, label);
 
                         if (width > mViewPortHandler.offsetRight() * 2
-                                && x + width > mViewPortHandler.getChartWidth())
+                                && x + width > mViewPortHandler.getChartWidth()) {
                             x -= width / 2;
+                        }
 
                         // avoid clipping of the first
                     } else if (i == 0) {
@@ -235,8 +238,9 @@ public class XAxisRenderer extends AxisRenderer {
     @Override
     public void renderGridLines(Canvas c) {
 
-        if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled())
+        if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled()) {
             return;
+        }
 
         int clipRestoreCount = c.save();
         c.clipRect(getGridClippingRect());
@@ -306,8 +310,9 @@ public class XAxisRenderer extends AxisRenderer {
 
         List<LimitLine> limitLines = mXAxis.getLimitLines();
 
-        if (limitLines == null || limitLines.size() <= 0)
+        if (limitLines == null || limitLines.size() <= 0) {
             return;
+        }
 
         float[] position = mRenderLimitLinesBuffer;
         position[0] = 0;
@@ -317,8 +322,9 @@ public class XAxisRenderer extends AxisRenderer {
 
             LimitLine l = limitLines.get(i);
 
-            if (!l.isEnabled())
+            if (!l.isEnabled()) {
                 continue;
+            }
 
             int clipRestoreCount = c.save();
             mLimitLineClippingRect.set(mViewPortHandler.getContentRect());
@@ -362,7 +368,7 @@ public class XAxisRenderer extends AxisRenderer {
         String label = limitLine.getLabel();
 
         // if drawing the limit-value label is enabled
-        if (label != null && !label.equals("")) {
+        if (label != null && !"".equals(label)) {
 
             mLimitLinePaint.setStyle(limitLine.getTextStyle());
             mLimitLinePaint.setPathEffect(null);

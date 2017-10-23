@@ -34,13 +34,15 @@ public class ChangeVisibilityDeserializer extends XMLDeserializer<Message> {
 
                 if (rootName.equals(MNSConstants.CHANGE_VISIBILITY_TAG)) {
                     String receiptHandle = safeGetElementContent(root, MNSConstants.RECEIPT_HANDLE_TAG, null);
-                    if (receiptHandle != null)
+                    if (receiptHandle != null) {
                         message.setReceiptHandle(receiptHandle);
+                    }
 
                     String nextVisibleTime = safeGetElementContent(root,
                             MNSConstants.NEXT_VISIBLE_TIME_TAG, null);
-                    if (nextVisibleTime != null)
+                    if (nextVisibleTime != null) {
                         message.setNextVisibleTime(new Date(Long.parseLong(nextVisibleTime)));
+                    }
 
                     return message;
                 }

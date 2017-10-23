@@ -54,6 +54,7 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
         mViewPortHandler.centerViewPort(pts, view);
     }
 
+    @Override
     public void recycleSelf(){
         recycleInstance(this);
     }

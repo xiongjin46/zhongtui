@@ -77,8 +77,12 @@ public class OSSUtils {
             for (Map.Entry<String, String> entry : userMetadata.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                if (key != null) key = key.trim();
-                if (value != null) value = value.trim();
+                if (key != null) {
+                    key = key.trim();
+                }
+                if (value != null) {
+                    value = value.trim();
+                }
                 headers.put(key, value);
             }
         }
@@ -206,7 +210,9 @@ public class OSSUtils {
 
         boolean first = true;
         for (String s : strings) {
-            if (!first) result.append(", ");
+            if (!first) {
+                result.append(", ");
+            }
 
             result.append(s);
             first = false;

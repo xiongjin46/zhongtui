@@ -167,8 +167,9 @@ public abstract class AxisRenderer extends Renderer {
 
         // If granularity is enabled, then do not allow the interval to go below specified granularity.
         // This is used to avoid repeated values when rounding values for display.
-        if (mAxis.isGranularityEnabled())
+        if (mAxis.isGranularityEnabled()) {
             interval = interval < mAxis.getGranularity() ? mAxis.getGranularity() : interval;
+        }
 
         // Normalize interval
         double intervalMagnitude = Utils.roundToNextSignificant(Math.pow(10, (int) Math.log10(interval)));
@@ -230,7 +231,9 @@ public abstract class AxisRenderer extends Renderer {
             for (f = first, i = 0; i < n; f += interval, ++i) {
 
                 if (f == 0.0) // Fix for negative zero case (Where value == -0.0, and 0.0 == -0.0)
+                {
                     f = 0.0;
+                }
 
                 mAxis.mEntries[i] = (float) f;
             }

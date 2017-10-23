@@ -36,40 +36,48 @@ public class MessageDeserializer extends XMLDeserializer<Message> {
 
                 if (rootName.equals(MNSConstants.MESSAGE_TAG)) {
                     String messageId = safeGetElementContent(root, MNSConstants.MESSAGE_ID_TAG, null);
-                    if (messageId != null)
+                    if (messageId != null) {
                         message.setMessageId(messageId);
+                    }
 
                     String messageBodyMd5 = safeGetElementContent(root, MNSConstants.MESSAGE_BODY_MD5_TAG, null);
-                    if (messageBodyMd5 != null)
+                    if (messageBodyMd5 != null) {
                         message.setMessageBodyMd5(messageBodyMd5);
+                    }
 
                     String receiptHandle = safeGetElementContent(root, MNSConstants.RECEIPT_HANDLE_TAG, null);
-                    if (receiptHandle != null)
+                    if (receiptHandle != null) {
                         message.setReceiptHandle(receiptHandle);
+                    }
 
                     String messageBody = safeGetElementContent(root, MNSConstants.MESSAGE_BODY_TAG, null);
-                    if (messageBody != null)
+                    if (messageBody != null) {
                         message.setMessageBody(messageBody);
+                    }
 
                     String enqueTime = safeGetElementContent(root, MNSConstants.ENQUEUE_TIME_TAG, null);
-                    if (enqueTime != null)
+                    if (enqueTime != null) {
                         message.setEnqueueTime(new Date(Long.parseLong(enqueTime)));
+                    }
 
                     String nextVisibleTime = safeGetElementContent(root,
                             MNSConstants.NEXT_VISIBLE_TIME_TAG, null);
-                    if (nextVisibleTime != null)
+                    if (nextVisibleTime != null) {
                         message.setNextVisibleTime(new Date(Long.parseLong(nextVisibleTime)));
+                    }
 
                     String firstDequeueTime = safeGetElementContent(root,
                             MNSConstants.FIRST_DEQUEUE_TIME_TAG, null);
-                    if (firstDequeueTime != null)
+                    if (firstDequeueTime != null) {
                         message.setFirstDequeueTime(new Date(
                                 Long.parseLong(firstDequeueTime)));
+                    }
 
                     String dequeueCount = safeGetElementContent(root, MNSConstants.DEQUEUE_COUNT_TAG,
                             null);
-                    if (dequeueCount != null)
+                    if (dequeueCount != null) {
                         message.setDequeueCount(Integer.parseInt(dequeueCount));
+                    }
 
                     String priority = safeGetElementContent(root, MNSConstants.PRIORITY_TAG, null);
                     if (priority != null) {

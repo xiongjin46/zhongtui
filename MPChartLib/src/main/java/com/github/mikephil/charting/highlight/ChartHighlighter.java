@@ -131,16 +131,18 @@ public class ChartHighlighter<T extends BarLineScatterCandleBubbleDataProvider> 
 
         BarLineScatterCandleBubbleData data = getData();
 
-        if (data == null)
+        if (data == null) {
             return mHighlightBuffer;
+        }
 
         for (int i = 0, dataSetCount = data.getDataSetCount(); i < dataSetCount; i++) {
 
             IDataSet dataSet = data.getDataSetByIndex(i);
 
             // don't include DataSets that cannot be highlighted
-            if (!dataSet.isHighlightEnabled())
+            if (!dataSet.isHighlightEnabled()) {
                 continue;
+            }
 
             mHighlightBuffer.addAll(buildHighlights(dataSet, i, xVal, DataSet.Rounding.CLOSEST));
         }
@@ -173,8 +175,9 @@ public class ChartHighlighter<T extends BarLineScatterCandleBubbleDataProvider> 
             }
         }
 
-        if (entries.size() == 0)
+        if (entries.size() == 0) {
             return highlights;
+        }
 
         for (Entry e : entries) {
             MPPointD pixels = mChart.getTransformer(

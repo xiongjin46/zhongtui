@@ -106,14 +106,16 @@ public class RadarChartRenderer extends LineRadarRenderer {
                     (e.getY() - mChart.getYChartMin()) * factor * phaseY,
                     sliceangle * j * phaseX + mChart.getRotationAngle(), pOut);
 
-            if (Float.isNaN(pOut.x))
+            if (Float.isNaN(pOut.x)) {
                 continue;
+            }
 
             if (!hasMovedToPoint) {
                 surface.moveTo(pOut.x, pOut.y);
                 hasMovedToPoint = true;
-            } else
+            } else {
                 surface.lineTo(pOut.x, pOut.y);
+            }
         }
 
         if (dataSet.getEntryCount() > mostEntries) {
@@ -139,8 +141,9 @@ public class RadarChartRenderer extends LineRadarRenderer {
         mRenderPaint.setStyle(Paint.Style.STROKE);
 
         // draw the line (only if filled is disabled or alpha is below 255)
-        if (!dataSet.isDrawFilledEnabled() || dataSet.getFillAlpha() < 255)
+        if (!dataSet.isDrawFilledEnabled() || dataSet.getFillAlpha() < 255) {
             c.drawPath(surface, mRenderPaint);
+        }
 
         MPPointF.recycleInstance(center);
         MPPointF.recycleInstance(pOut);
@@ -168,8 +171,9 @@ public class RadarChartRenderer extends LineRadarRenderer {
 
             IRadarDataSet dataSet = mChart.getData().getDataSetByIndex(i);
 
-            if (!shouldDrawValues(dataSet))
+            if (!shouldDrawValues(dataSet)) {
                 continue;
+            }
 
             // apply the text-styling defined by the DataSet
             applyValueTextStyle(dataSet);
@@ -313,13 +317,15 @@ public class RadarChartRenderer extends LineRadarRenderer {
 
             IRadarDataSet set = radarData.getDataSetByIndex(high.getDataSetIndex());
 
-            if (set == null || !set.isHighlightEnabled())
+            if (set == null || !set.isHighlightEnabled()) {
                 continue;
+            }
 
             RadarEntry e = set.getEntryForIndex((int) high.getX());
 
-            if (!isInBoundsX(e, set))
+            if (!isInBoundsX(e, set)) {
                 continue;
+            }
 
             float y = (e.getY() - mChart.getYChartMin());
 

@@ -203,8 +203,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * @param color
      */
     public void addColor(int color) {
-        if (mColors == null)
+        if (mColors == null) {
             mColors = new ArrayList<Integer>();
+        }
         mColors.add(color);
     }
 
@@ -279,16 +280,18 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @Override
     public void setValueFormatter(IValueFormatter f) {
 
-        if (f == null)
+        if (f == null) {
             return;
-        else
+        } else {
             mValueFormatter = f;
+        }
     }
 
     @Override
     public IValueFormatter getValueFormatter() {
-        if (needsFormatter())
+        if (needsFormatter()) {
             return Utils.getDefaultValueFormatter();
+        }
         return mValueFormatter;
     }
 
@@ -435,8 +438,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     public int getIndexInEntries(int xIndex) {
 
         for (int i = 0; i < getEntryCount(); i++) {
-            if (xIndex == getEntryForIndex(i).getX())
+            if (xIndex == getEntryForIndex(i).getX()) {
                 return i;
+            }
         }
 
         return -1;
@@ -449,8 +453,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
             T entry = getEntryForIndex(0);
             return removeEntry(entry);
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -460,8 +465,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
             T e = getEntryForIndex(getEntryCount() - 1);
             return removeEntry(e);
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -482,8 +488,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     public boolean contains(T e) {
 
         for (int i = 0; i < getEntryCount(); i++) {
-            if (getEntryForIndex(i).equals(e))
+            if (getEntryForIndex(i).equals(e)) {
                 return true;
+            }
         }
 
         return false;

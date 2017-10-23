@@ -65,8 +65,9 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
 
         OnChartGestureListener l = mChart.getOnChartGestureListener();
 
-        if (l != null)
+        if (l != null) {
             l.onChartGestureStart(me, mLastGesture);
+        }
     }
 
     /**
@@ -78,8 +79,9 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
 
         OnChartGestureListener l = mChart.getOnChartGestureListener();
 
-        if (l != null)
+        if (l != null) {
             l.onChartGestureEnd(me, mLastGesture);
+        }
     }
 
     /**

@@ -361,7 +361,7 @@ public class WheelView extends View {
             initPosition = adapter.getItemsCount()-1;
         }
         //可见的item数组
-        Object visibles[] = new Object[itemsVisible];
+        Object[] visibles = new Object[itemsVisible];
         //滚动的Y值高度除去每行Item的高度，得到滚动了多少个item，即change数
         change = (int)(totalScrollY / itemHeight);
 
@@ -577,7 +577,7 @@ public class WheelView extends View {
         paintCenterText.getTextBounds(content, 0, content.length(), rect);
         switch (mGravity) {
             case Gravity.CENTER://显示内容居中
-                if (isOptions||label == null|| label.equals("")||!isCenterLabel) {
+                if (isOptions||label == null|| "".equals(label) ||!isCenterLabel) {
                     drawCenterContentStart = (int) ((measuredWidth - rect.width()) * 0.5);
                 } else {//只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     drawCenterContentStart = (int) ((measuredWidth - rect.width()) * 0.25);
@@ -597,7 +597,7 @@ public class WheelView extends View {
         paintOuterText.getTextBounds(content, 0, content.length(), rect);
         switch (mGravity) {
             case Gravity.CENTER:
-                if (isOptions||label == null|| label.equals("")||!isCenterLabel) {
+                if (isOptions||label == null|| "".equals(label) ||!isCenterLabel) {
                     drawOutContentStart = (int) ((measuredWidth - rect.width()) * 0.5);
                 } else {//只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     drawOutContentStart = (int) ((measuredWidth - rect.width()) * 0.25);
@@ -609,6 +609,7 @@ public class WheelView extends View {
             case Gravity.RIGHT:
                 drawOutContentStart = measuredWidth - rect.width()-(int)CENTERCONTENTOFFSET;
                 break;
+            default:
         }
     }
 

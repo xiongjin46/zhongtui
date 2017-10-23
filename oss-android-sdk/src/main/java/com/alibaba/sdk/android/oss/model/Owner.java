@@ -107,10 +107,18 @@ public class Owner implements Serializable {
         String thisOwnerId = this.getId();
         String thisOwnerName = this.getDisplayName();
 
-        if (otherOwnerId == null) otherOwnerId = "";
-        if (otherOwnerName == null) otherOwnerName = "";
-        if (thisOwnerId == null) thisOwnerId = "";
-        if (thisOwnerName == null) thisOwnerName = "";
+        if (otherOwnerId == null) {
+            otherOwnerId = "";
+        }
+        if (otherOwnerName == null) {
+            otherOwnerName = "";
+        }
+        if (thisOwnerId == null) {
+            thisOwnerId = "";
+        }
+        if (thisOwnerName == null) {
+            thisOwnerName = "";
+        }
 
         return (otherOwnerId.equals(thisOwnerId) &&
                 otherOwnerName.equals(thisOwnerName));

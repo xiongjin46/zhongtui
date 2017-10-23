@@ -40,8 +40,9 @@ public class StackedValueFormatter implements IValueFormatter
 
         StringBuffer b = new StringBuffer();
         for (int i = 0; i < decimals; i++) {
-            if (i == 0)
+            if (i == 0) {
                 b.append(".");
+            }
             b.append("0");
         }
 

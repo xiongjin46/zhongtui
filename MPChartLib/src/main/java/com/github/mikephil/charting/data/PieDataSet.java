@@ -49,8 +49,9 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
     @Override
     protected void calcMinMax(PieEntry e) {
 
-        if (e == null)
+        if (e == null) {
             return;
+        }
 
         calcMinMaxY(e);
     }
@@ -63,10 +64,12 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
      */
     public void setSliceSpace(float spaceDp) {
 
-        if (spaceDp > 20)
+        if (spaceDp > 20) {
             spaceDp = 20f;
-        if (spaceDp < 0)
+        }
+        if (spaceDp < 0) {
             spaceDp = 0f;
+        }
 
         mSliceSpace = Utils.convertDpToPixel(spaceDp);
     }

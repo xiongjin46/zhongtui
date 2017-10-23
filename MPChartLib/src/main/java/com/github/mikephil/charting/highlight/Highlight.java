@@ -216,14 +216,15 @@ public class Highlight {
      */
     public boolean equalTo(Highlight h) {
 
-        if (h == null)
+        if (h == null) {
             return false;
-        else {
+        } else {
             if (this.mDataSetIndex == h.mDataSetIndex && this.mX == h.mX
-                    && this.mStackIndex == h.mStackIndex && this.mDataIndex == h.mDataIndex)
+                    && this.mStackIndex == h.mStackIndex && this.mDataIndex == h.mDataIndex) {
                 return true;
-            else
+            } else {
                 return false;
+            }
         }
     }
 

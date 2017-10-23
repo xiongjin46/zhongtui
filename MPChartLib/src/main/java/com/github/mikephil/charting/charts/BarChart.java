@@ -94,7 +94,9 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
             return null;
         } else {
             Highlight h = getHighlighter().getHighlight(x, y);
-            if (h == null || !isHighlightFullBarEnabled()) return h;
+            if (h == null || !isHighlightFullBarEnabled()) {
+                return h;
+            }
 
             // For isHighlightFullBarEnabled, remove stackIndex
             return new Highlight(h.getX(), h.getY(),
@@ -165,6 +167,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      *
      * @return
      */
+    @Override
     public boolean isDrawValueAboveBarEnabled() {
         return mDrawValueAboveBar;
     }
@@ -184,6 +187,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      *
      * @return
      */
+    @Override
     public boolean isDrawBarShadowEnabled() {
         return mDrawBarShadow;
     }

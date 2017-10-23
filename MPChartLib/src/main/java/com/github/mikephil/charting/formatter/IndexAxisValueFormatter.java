@@ -30,8 +30,9 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
      * @param values The values string array
      */
     public IndexAxisValueFormatter(String[] values) {
-        if (values != null)
+        if (values != null) {
             setValues(values);
+        }
     }
 
     /**
@@ -40,15 +41,18 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
      * @param values The values string array
      */
     public IndexAxisValueFormatter(Collection<String> values) {
-        if (values != null)
+        if (values != null) {
             setValues(values.toArray(new String[values.size()]));
+        }
     }
 
+    @Override
     public String getFormattedValue(float value, AxisBase axis) {
         int index = Math.round(value);
 
-        if (index < 0 || index >= mValueCount || index != (int)value)
+        if (index < 0 || index >= mValueCount || index != (int)value) {
             return "";
+        }
 
         return mValues[index];
     }
@@ -60,8 +64,9 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
 
     public void setValues(String[] values)
     {
-        if (values == null)
-            values = new String[] {};
+        if (values == null) {
+            values = new String[]{};
+        }
 
         this.mValues = values;
         this.mValueCount = values.length;

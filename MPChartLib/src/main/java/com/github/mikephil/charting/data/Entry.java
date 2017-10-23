@@ -109,17 +109,21 @@ public class Entry extends BaseEntry implements Parcelable {
      */
     public boolean equalTo(Entry e) {
 
-        if (e == null)
+        if (e == null) {
             return false;
+        }
 
-        if (e.getData() != this.getData())
+        if (e.getData() != this.getData()) {
             return false;
+        }
 
-        if (Math.abs(e.x - this.x) > Utils.FLOAT_EPSILON)
+        if (Math.abs(e.x - this.x) > Utils.FLOAT_EPSILON) {
             return false;
+        }
 
-        if (Math.abs(e.getY() - this.getY()) > Utils.FLOAT_EPSILON)
+        if (Math.abs(e.getY() - this.getY()) > Utils.FLOAT_EPSILON) {
             return false;
+        }
 
         return true;
     }
@@ -162,10 +166,12 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     public static final Parcelable.Creator<Entry> CREATOR = new Parcelable.Creator<Entry>() {
+        @Override
         public Entry createFromParcel(Parcel source) {
             return new Entry(source);
         }
 
+        @Override
         public Entry[] newArray(int size) {
             return new Entry[size];
         }

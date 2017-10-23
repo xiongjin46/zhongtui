@@ -221,10 +221,11 @@ public class YAxis extends AxisBase {
      */
     @Deprecated
     public void setStartAtZero(boolean startAtZero) {
-        if (startAtZero)
+        if (startAtZero) {
             setAxisMinimum(0f);
-        else
+        } else {
             resetAxisMinimum();
+        }
     }
 
     /**
@@ -319,11 +320,13 @@ public class YAxis extends AxisBase {
         float minWidth = getMinWidth();
         float maxWidth = getMaxWidth();
 
-        if (minWidth > 0.f)
+        if (minWidth > 0.f) {
             minWidth = Utils.convertDpToPixel(minWidth);
+        }
 
-        if (maxWidth > 0.f && maxWidth != Float.POSITIVE_INFINITY)
+        if (maxWidth > 0.f && maxWidth != Float.POSITIVE_INFINITY) {
             maxWidth = Utils.convertDpToPixel(maxWidth);
+        }
 
         width = Math.max(minWidth, Math.min(width, maxWidth > 0.0 ? maxWidth : width));
 
@@ -351,10 +354,11 @@ public class YAxis extends AxisBase {
      */
     public boolean needsOffset() {
         if (isEnabled() && isDrawLabelsEnabled() && getLabelPosition() == YAxisLabelPosition
-                .OUTSIDE_CHART)
+                .OUTSIDE_CHART) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     @Override

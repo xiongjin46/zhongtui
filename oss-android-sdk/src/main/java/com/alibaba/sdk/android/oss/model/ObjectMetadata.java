@@ -128,7 +128,9 @@ public class ObjectMetadata {
     public long getContentLength() {
         Long contentLength = (Long)metadata.get(OSSHeaders.CONTENT_LENGTH);
 
-        if (contentLength == null) return 0;
+        if (contentLength == null) {
+            return 0;
+        }
         return contentLength.longValue();
     }
 

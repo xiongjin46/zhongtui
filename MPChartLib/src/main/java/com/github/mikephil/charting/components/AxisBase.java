@@ -310,10 +310,12 @@ public abstract class AxisBase extends ComponentBase {
      */
     public void setLabelCount(int count) {
 
-        if (count > 25)
+        if (count > 25) {
             count = 25;
-        if (count < 2)
+        }
+        if (count < 2) {
             count = 2;
+        }
 
         mLabelCount = count;
         mForceLabels = false;
@@ -457,8 +459,9 @@ public abstract class AxisBase extends ComponentBase {
         for (int i = 0; i < mEntries.length; i++) {
             String text = getFormattedLabel(i);
 
-            if (text != null && longest.length() < text.length())
+            if (text != null && longest.length() < text.length()) {
                 longest = text;
+            }
         }
 
         return longest;
@@ -466,10 +469,11 @@ public abstract class AxisBase extends ComponentBase {
 
     public String getFormattedLabel(int index) {
 
-        if (index < 0 || index >= mEntries.length)
+        if (index < 0 || index >= mEntries.length) {
             return "";
-        else
+        } else {
             return getValueFormatter().getFormattedValue(mEntries[index], this);
+        }
     }
 
     /**
@@ -483,10 +487,11 @@ public abstract class AxisBase extends ComponentBase {
      */
     public void setValueFormatter(IAxisValueFormatter f) {
 
-        if (f == null)
+        if (f == null) {
             mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
-        else
+        } else {
             mAxisValueFormatter = f;
+        }
     }
 
     /**
@@ -498,8 +503,9 @@ public abstract class AxisBase extends ComponentBase {
 
         if (mAxisValueFormatter == null ||
                 (mAxisValueFormatter instanceof DefaultAxisValueFormatter &&
-                        ((DefaultAxisValueFormatter)mAxisValueFormatter).getDecimalDigits() != mDecimals))
+                        ((DefaultAxisValueFormatter)mAxisValueFormatter).getDecimalDigits() != mDecimals)) {
             mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
+        }
 
         return mAxisValueFormatter;
     }

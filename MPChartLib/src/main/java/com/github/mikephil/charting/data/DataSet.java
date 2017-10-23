@@ -52,8 +52,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         super(label);
         this.mValues = values;
 
-        if (mValues == null)
+        if (mValues == null) {
             mValues = new ArrayList<T>();
+        }
 
         calcMinMax();
     }
@@ -61,8 +62,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public void calcMinMax() {
 
-        if (mValues == null || mValues.isEmpty())
+        if (mValues == null || mValues.isEmpty()) {
             return;
+        }
 
         mYMax = -Float.MAX_VALUE;
         mYMin = Float.MAX_VALUE;
@@ -77,8 +79,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public void calcMinMaxY(float fromX, float toX) {
 
-        if (mValues == null || mValues.isEmpty())
+        if (mValues == null || mValues.isEmpty()) {
             return;
+        }
 
         mYMax = -Float.MAX_VALUE;
         mYMin = Float.MAX_VALUE;
@@ -100,8 +103,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      */
     protected void calcMinMax(T e) {
 
-        if (e == null)
+        if (e == null) {
             return;
+        }
 
         calcMinMaxX(e);
 
@@ -110,20 +114,24 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
     protected void calcMinMaxX(T e) {
 
-        if (e.getX() < mXMin)
+        if (e.getX() < mXMin) {
             mXMin = e.getX();
+        }
 
-        if (e.getX() > mXMax)
+        if (e.getX() > mXMax) {
             mXMax = e.getX();
+        }
     }
 
     protected void calcMinMaxY(T e) {
 
-        if (e.getY() < mYMin)
+        if (e.getY() < mYMin) {
             mYMin = e.getY();
+        }
 
-        if (e.getY() > mYMax)
+        if (e.getY() > mYMax) {
             mYMax = e.getY();
+        }
     }
 
     @Override
@@ -203,8 +211,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public void addEntryOrdered(T e) {
 
-        if (e == null)
+        if (e == null) {
             return;
+        }
 
         if (mValues == null) {
             mValues = new ArrayList<T>();
@@ -229,8 +238,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public boolean addEntry(T e) {
 
-        if (e == null)
+        if (e == null) {
             return false;
+        }
 
         List<T> values = getValues();
         if (values == null) {
@@ -246,11 +256,13 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public boolean removeEntry(T e) {
 
-        if (e == null)
+        if (e == null) {
             return false;
+        }
 
-        if (mValues == null)
+        if (mValues == null) {
             return false;
+        }
 
         // remove the entry
         boolean removed = mValues.remove(e);
@@ -271,8 +283,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     public T getEntryForXValue(float xValue, float closestToY, Rounding rounding) {
 
         int index = getEntryIndex(xValue, closestToY, rounding);
-        if (index > -1)
+        if (index > -1) {
             return mValues.get(index);
+        }
         return null;
     }
 
@@ -289,8 +302,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public int getEntryIndex(float xValue, float closestToY, Rounding rounding) {
 
-        if (mValues == null || mValues.isEmpty())
+        if (mValues == null || mValues.isEmpty()) {
             return -1;
+        }
 
         int low = 0;
         int high = mValues.size() - 1;
@@ -342,21 +356,24 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
             // Search by closest to y-value
             if (!Float.isNaN(closestToY)) {
-                while (closest > 0 && mValues.get(closest - 1).getX() == closestXValue)
+                while (closest > 0 && mValues.get(closest - 1).getX() == closestXValue) {
                     closest -= 1;
+                }
 
                 float closestYValue = mValues.get(closest).getY();
                 int closestYIndex = closest;
 
                 while (true) {
                     closest += 1;
-                    if (closest >= mValues.size())
+                    if (closest >= mValues.size()) {
                         break;
+                    }
 
                     final Entry value = mValues.get(closest);
 
-                    if (value.getX() != closestXValue)
+                    if (value.getX() != closestXValue) {
                         break;
+                    }
 
                     if (Math.abs(value.getY() - closestToY) < Math.abs(closestYValue - closestToY)) {
                         closestYValue = closestToY;
@@ -385,8 +402,9 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
             // if we have a match
             if (xValue == entry.getX()) {
-                while (m > 0 && mValues.get(m - 1).getX() == xValue)
+                while (m > 0 && mValues.get(m - 1).getX() == xValue) {
                     m--;
+                }
 
                 high = mValues.size();
 
@@ -402,10 +420,11 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
                 break;
             } else {
-                if (xValue > entry.getX())
+                if (xValue > entry.getX()) {
                     low = m + 1;
-                else
+                } else {
                     high = m - 1;
+                }
             }
         }
 

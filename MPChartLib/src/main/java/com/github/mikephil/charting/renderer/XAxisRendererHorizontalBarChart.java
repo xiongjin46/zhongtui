@@ -87,8 +87,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     @Override
     public void renderAxisLabels(Canvas c) {
 
-        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled())
+        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
         float xoffset = mXAxis.getXOffset();
 
@@ -184,8 +185,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     @Override
     public void renderAxisLine(Canvas c) {
 
-        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled())
+        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled()) {
             return;
+        }
 
         mAxisLinePaint.setColor(mXAxis.getAxisLineColor());
         mAxisLinePaint.setStrokeWidth(mXAxis.getAxisLineWidth());
@@ -219,8 +221,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 
 		List<LimitLine> limitLines = mXAxis.getLimitLines();
 
-		if (limitLines == null || limitLines.size() <= 0)
-			return;
+		if (limitLines == null || limitLines.size() <= 0) {
+            return;
+        }
 
 		float[] pts = mRenderLimitLinesBuffer;
         pts[0] = 0;
@@ -233,8 +236,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 
 			LimitLine l = limitLines.get(i);
 
-            if(!l.isEnabled())
+            if(!l.isEnabled()) {
                 continue;
+            }
 
             int clipRestoreCount = c.save();
             mLimitLineClippingRect.set(mViewPortHandler.getContentRect());
@@ -260,7 +264,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 			String label = l.getLabel();
 
 			// if drawing the limit-value label is enabled
-			if (label != null && !label.equals("")) {
+			if (label != null && !"".equals(label)) {
 
 				mLimitLinePaint.setStyle(l.getTextStyle());
 				mLimitLinePaint.setPathEffect(null);

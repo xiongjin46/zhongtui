@@ -132,10 +132,12 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      */
     public void setCubicIntensity(float intensity) {
 
-        if (intensity > 1f)
+        if (intensity > 1f) {
             intensity = 1f;
-        if (intensity < 0.05f)
+        }
+        if (intensity < 0.05f) {
             intensity = 0.05f;
+        }
 
         mCubicIntensity = intensity;
     }
@@ -395,10 +397,11 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      */
     public void setFillFormatter(IFillFormatter formatter) {
 
-        if (formatter == null)
+        if (formatter == null) {
             mFillFormatter = new DefaultFillFormatter();
-        else
+        } else {
             mFillFormatter = formatter;
+        }
     }
 
     @Override

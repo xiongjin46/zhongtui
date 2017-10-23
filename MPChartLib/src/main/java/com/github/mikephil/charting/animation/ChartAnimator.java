@@ -53,8 +53,9 @@ public class ChartAnimator {
     public void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
             EasingFunction easingY) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(easingY);
@@ -87,8 +88,9 @@ public class ChartAnimator {
      */
     public void animateX(int durationMillis, EasingFunction easing) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(easing);
@@ -107,8 +109,9 @@ public class ChartAnimator {
      */
     public void animateY(int durationMillis, EasingFunction easing) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(easing);
@@ -135,8 +138,9 @@ public class ChartAnimator {
     public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
             Easing.EasingOption easingY) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easingY));
@@ -169,8 +173,9 @@ public class ChartAnimator {
      */
     public void animateX(int durationMillis, Easing.EasingOption easing) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(Easing.getEasingFunctionFromOption(easing));
@@ -189,8 +194,9 @@ public class ChartAnimator {
      */
     public void animateY(int durationMillis, Easing.EasingOption easing) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easing));
@@ -214,8 +220,9 @@ public class ChartAnimator {
      */
     public void animateXY(int durationMillisX, int durationMillisY) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setDuration(
@@ -245,8 +252,9 @@ public class ChartAnimator {
      */
     public void animateX(int durationMillis) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setDuration(durationMillis);
@@ -263,8 +271,9 @@ public class ChartAnimator {
      */
     public void animateY(int durationMillis) {
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             return;
+        }
 
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setDuration(durationMillis);

@@ -225,7 +225,7 @@ public abstract class Utils {
      * Math.pow(...) is very expensive, so avoid calling it and create it
      * yourself.
      */
-    private static final int POW_10[] = {
+    private static final int[] POW_10 = {
             1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000
     };
 
@@ -355,8 +355,9 @@ public abstract class Utils {
     public static float roundToNextSignificant(double number) {
         if (Double.isInfinite(number) || 
             Double.isNaN(number) || 
-            number == 0.0)
+            number == 0.0) {
             return 0;
+        }
         
         final float d = (float) Math.ceil((float) Math.log10(number < 0 ? -number : number));
         final int pw = 1 - (int) d;
@@ -376,8 +377,9 @@ public abstract class Utils {
 
         float i = roundToNextSignificant(number);
         
-        if (Float.isInfinite(i))
+        if (Float.isInfinite(i)) {
             return 0;
+        }
         
         return (int) Math.ceil(-Math.log10(i)) + 2;
     }
@@ -436,9 +438,9 @@ public abstract class Utils {
      * @return
      */
     public static double nextUp(double d) {
-        if (d == Double.POSITIVE_INFINITY)
+        if (d == Double.POSITIVE_INFINITY) {
             return d;
-        else {
+        } else {
             d += 0.0d;
             return Double.longBitsToDouble(Double.doubleToRawLongBits(d) +
                     ((d >= 0.0d) ? +1L : -1L));
@@ -478,8 +480,9 @@ public abstract class Utils {
         final float x1 = tracker.getXVelocity(id1);
         final float y1 = tracker.getYVelocity(id1);
         for (int i = 0, count = ev.getPointerCount(); i < count; i++) {
-            if (i == upIndex)
+            if (i == upIndex) {
                 continue;
+            }
 
             final int id2 = ev.getPointerId(i);
             final float x = x1 * tracker.getXVelocity(id2);
@@ -501,10 +504,11 @@ public abstract class Utils {
      */
     @SuppressLint("NewApi")
     public static void postInvalidateOnAnimation(View view) {
-        if (Build.VERSION.SDK_INT >= 16)
+        if (Build.VERSION.SDK_INT >= 16) {
             view.postInvalidateOnAnimation();
-        else
+        } else {
             view.postInvalidateDelayed(10);
+        }
     }
 
     public static int getMinimumFlingVelocity() {
@@ -519,8 +523,9 @@ public abstract class Utils {
      * returns an angle between 0.f < 360.f (not less than zero, less than 360)
      */
     public static float getNormalizedAngle(float angle) {
-        while (angle < 0.f)
+        while (angle < 0.f) {
             angle += 360.f;
+        }
 
         return angle % 360.f;
     }

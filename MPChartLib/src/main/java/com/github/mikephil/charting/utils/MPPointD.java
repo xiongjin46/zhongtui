@@ -35,6 +35,7 @@ public class MPPointD extends ObjectPool.Poolable {
     public double x;
     public double y;
 
+    @Override
     protected ObjectPool.Poolable instantiate(){
         return new MPPointD(0,0);
     }
@@ -47,6 +48,7 @@ public class MPPointD extends ObjectPool.Poolable {
     /**
      * returns a string representation of the object
      */
+    @Override
     public String toString() {
         return "MPPointD, x: " + x + ", y: " + y;
     }

@@ -31,8 +31,9 @@ public class ScatterData extends BarLineScatterCandleBubbleData<IScatterDataSet>
         for (IScatterDataSet set : mDataSets) {
             float size = set.getScatterShapeSize();
 
-            if (size > max)
+            if (size > max) {
                 max = size;
+            }
         }
 
         return max;

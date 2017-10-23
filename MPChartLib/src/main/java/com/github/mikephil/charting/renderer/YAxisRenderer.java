@@ -47,8 +47,9 @@ public class YAxisRenderer extends AxisRenderer {
     @Override
     public void renderAxisLabels(Canvas c) {
 
-        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled())
+        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
         float[] positions = getTransformedPositions();
 
@@ -91,8 +92,9 @@ public class YAxisRenderer extends AxisRenderer {
     @Override
     public void renderAxisLine(Canvas c) {
 
-        if (!mYAxis.isEnabled() || !mYAxis.isDrawAxisLineEnabled())
+        if (!mYAxis.isEnabled() || !mYAxis.isDrawAxisLineEnabled()) {
             return;
+        }
 
         mAxisLinePaint.setColor(mYAxis.getAxisLineColor());
         mAxisLinePaint.setStrokeWidth(mYAxis.getAxisLineWidth());
@@ -132,8 +134,9 @@ public class YAxisRenderer extends AxisRenderer {
     @Override
     public void renderGridLines(Canvas c) {
 
-        if (!mYAxis.isEnabled())
+        if (!mYAxis.isEnabled()) {
             return;
+        }
 
         if (mYAxis.isDrawGridLinesEnabled()) {
 
@@ -256,8 +259,9 @@ public class YAxisRenderer extends AxisRenderer {
 
         List<LimitLine> limitLines = mYAxis.getLimitLines();
 
-        if (limitLines == null || limitLines.size() <= 0)
+        if (limitLines == null || limitLines.size() <= 0) {
             return;
+        }
 
         float[] pts = mRenderLimitLinesBuffer;
         pts[0] = 0;
@@ -269,8 +273,9 @@ public class YAxisRenderer extends AxisRenderer {
 
             LimitLine l = limitLines.get(i);
 
-            if (!l.isEnabled())
+            if (!l.isEnabled()) {
                 continue;
+            }
 
             int clipRestoreCount = c.save();
             mLimitLineClippingRect.set(mViewPortHandler.getContentRect());
@@ -296,7 +301,7 @@ public class YAxisRenderer extends AxisRenderer {
             String label = l.getLabel();
 
             // if drawing the limit-value label is enabled
-            if (label != null && !label.equals("")) {
+            if (label != null && !"".equals(label)) {
 
                 mLimitLinePaint.setStyle(l.getTextStyle());
                 mLimitLinePaint.setPathEffect(null);

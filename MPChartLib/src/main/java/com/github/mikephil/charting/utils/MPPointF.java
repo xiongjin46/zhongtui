@@ -58,6 +58,7 @@ public class MPPointF extends ObjectPool.Poolable {
         /**
          * Return a new point from the data in the specified parcel.
          */
+        @Override
         public MPPointF createFromParcel(Parcel in) {
             MPPointF r = new MPPointF(0,0);
             r.my_readFromParcel(in);
@@ -67,6 +68,7 @@ public class MPPointF extends ObjectPool.Poolable {
         /**
          * Return an array of rectangles of the specified size.
          */
+        @Override
         public MPPointF[] newArray(int size) {
             return new MPPointF[size];
         }

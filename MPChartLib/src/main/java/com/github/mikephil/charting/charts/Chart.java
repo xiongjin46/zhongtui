@@ -209,9 +209,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         setWillNotDraw(false);
         // setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
-        if (android.os.Build.VERSION.SDK_INT < 11)
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             mAnimator = new ChartAnimator();
-        else
+        } else {
             mAnimator = new ChartAnimator(new AnimatorUpdateListener() {
 
                 @Override
@@ -220,6 +220,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
                     postInvalidate();
                 }
             });
+        }
 
         // initialize the utils
         Utils.init(getContext());
@@ -239,8 +240,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         mInfoPaint.setTextAlign(Align.CENTER);
         mInfoPaint.setTextSize(Utils.convertDpToPixel(12f));
 
-        if (mLogEnabled)
+        if (mLogEnabled) {
             Log.i("", "Chart.init()");
+        }
     }
 
     // public void initWithDummyData() {
@@ -296,15 +298,17 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         setupDefaultFormatter(data.getYMin(), data.getYMax());
 
         for (IDataSet set : mData.getDataSets()) {
-            if (set.needsFormatter() || set.getValueFormatter() == mDefaultValueFormatter)
+            if (set.needsFormatter() || set.getValueFormatter() == mDefaultValueFormatter) {
                 set.setValueFormatter(mDefaultValueFormatter);
+            }
         }
 
         // let the chart know there is new data
         notifyDataSetChanged();
 
-        if (mLogEnabled)
+        if (mLogEnabled) {
             Log.i(LOG_TAG, "Data is set.");
+        }
     }
 
     /**
@@ -336,14 +340,15 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public boolean isEmpty() {
 
-        if (mData == null)
+        if (mData == null) {
             return true;
-        else {
+        } else {
 
-            if (mData.getEntryCount() <= 0)
+            if (mData.getEntryCount() <= 0) {
                 return true;
-            else
+            } else {
                 return false;
+            }
         }
     }
 
@@ -625,12 +630,13 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         Entry e = null;
 
-        if (high == null)
+        if (high == null) {
             mIndicesToHighlight = null;
-        else {
+        } else {
 
-            if (mLogEnabled)
+            if (mLogEnabled) {
                 Log.i(LOG_TAG, "Highlighted: " + high.toString());
+            }
 
             e = mData.getEntryForHighlight(high);
             if (e == null) {
@@ -649,9 +655,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         if (callListener && mSelectionListener != null) {
 
-            if (!valuesToHighlight())
+            if (!valuesToHighlight()) {
                 mSelectionListener.onNothingSelected();
-            else {
+            } else {
                 // notify the listener
                 mSelectionListener.onValueSelected(e, high);
             }
@@ -675,8 +681,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return null;
-        } else
+        } else {
             return getHighlighter().getHighlight(x, y);
+        }
     }
 
     /**
@@ -719,8 +726,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected void drawMarkers(Canvas canvas) {
 
         // if there is no marker view or drawing marker is disabled
-        if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight())
+        if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight()) {
             return;
+        }
 
         for (int i = 0; i < mIndicesToHighlight.length; i++) {
 
@@ -732,14 +740,16 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
             int entryIndex = set.getEntryIndex(e);
 
             // make sure entry not null
-            if (e == null || entryIndex > set.getEntryCount() * mAnimator.getPhaseX())
+            if (e == null || entryIndex > set.getEntryCount() * mAnimator.getPhaseX()) {
                 continue;
+            }
 
             float[] pos = getMarkerPosition(highlight);
 
             // check bounds
-            if (!mViewPortHandler.isInBounds(pos[0], pos[1]))
+            if (!mViewPortHandler.isInBounds(pos[0], pos[1])) {
                 continue;
+            }
 
             // callbacks to update the content
             mMarker.refreshContent(e, highlight);
@@ -810,11 +820,13 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void setDragDecelerationFrictionCoef(float newValue) {
 
-        if (newValue < 0.f)
+        if (newValue < 0.f) {
             newValue = 0.f;
+        }
 
-        if (newValue >= 1f)
+        if (newValue >= 1f) {
             newValue = 0.999f;
+        }
 
         mDragDecelerationFrictionCoef = newValue;
     }
@@ -981,6 +993,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      *
      * @return
      */
+    @Override
     public IValueFormatter getDefaultValueFormatter() {
         return mDefaultValueFormatter;
     }
@@ -1281,8 +1294,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void disableScroll() {
         ViewParent parent = getParent();
-        if (parent != null)
+        if (parent != null) {
             parent.requestDisallowInterceptTouchEvent(true);
+        }
     }
 
     /**
@@ -1290,8 +1304,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void enableScroll() {
         ViewParent parent = getParent();
-        if (parent != null)
+        if (parent != null) {
             parent.requestDisallowInterceptTouchEvent(false);
+        }
     }
 
     /**
@@ -1398,6 +1413,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      *
      * @return
      */
+    @Override
     public T getData() {
         return mData;
     }
@@ -1428,8 +1444,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void setRenderer(DataRenderer renderer) {
 
-        if (renderer != null)
+        if (renderer != null) {
             mRenderer = renderer;
+        }
     }
 
     public IHighlighter getHighlighter() {
@@ -1470,11 +1487,14 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         Drawable bgDrawable = getBackground();
         if (bgDrawable != null)
             // has background drawable, then draw it on the canvas
+        {
             bgDrawable.draw(canvas);
-        else
+        } else
             // does not have background drawable, then draw white background on
             // the canvas
+        {
             canvas.drawColor(Color.WHITE);
+        }
         // draw the view on the canvas
         draw(canvas);
         // return the bitmap
@@ -1531,8 +1551,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     public boolean saveToGallery(String fileName, String subFolderPath, String fileDescription, Bitmap.CompressFormat
             format, int quality) {
         // restrain quality
-        if (quality < 0 || quality > 100)
+        if (quality < 0 || quality > 100) {
             quality = 50;
+        }
 
         long currentTime = System.currentTimeMillis();
 
@@ -1548,19 +1569,22 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         switch (format) {
             case PNG:
                 mimeType = "image/png";
-                if (!fileName.endsWith(".png"))
+                if (!fileName.endsWith(".png")) {
                     fileName += ".png";
+                }
                 break;
             case WEBP:
                 mimeType = "image/webp";
-                if (!fileName.endsWith(".webp"))
+                if (!fileName.endsWith(".webp")) {
                     fileName += ".webp";
+                }
                 break;
             case JPEG:
             default:
                 mimeType = "image/jpeg";
-                if (!(fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")))
+                if (!(fileName.endsWith(".jpg") || fileName.endsWith(".jpeg"))) {
                     fileName += ".jpg";
+                }
                 break;
         }
 
@@ -1672,15 +1696,17 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        if (mLogEnabled)
+        if (mLogEnabled) {
             Log.i(LOG_TAG, "OnSizeChanged()");
+        }
 
         if (w > 0 && h > 0 && w < 10000 && h < 10000) {
 
             mViewPortHandler.setChartDimens(w, h);
 
-            if (mLogEnabled)
+            if (mLogEnabled) {
                 Log.i(LOG_TAG, "Setting chart dimens, width: " + w + ", height: " + h);
+            }
 
             for (Runnable r : mJobs) {
                 post(r);
@@ -1704,10 +1730,11 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         if (android.os.Build.VERSION.SDK_INT >= 11) {
 
-            if (enabled)
+            if (enabled) {
                 setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            else
+            } else {
                 setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            }
         } else {
             Log.e(LOG_TAG,
                     "Cannot enable/disable hardware acceleration for devices below API level 11.");
@@ -1720,8 +1747,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         //Log.i(LOG_TAG, "Detaching...");
 
-        if (mUnbind)
+        if (mUnbind) {
             unbindDrawables(this);
+        }
     }
 
     /**

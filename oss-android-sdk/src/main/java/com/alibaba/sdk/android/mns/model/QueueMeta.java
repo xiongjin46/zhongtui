@@ -38,10 +38,11 @@ public class QueueMeta {
     }
 
     public void setLoggingEnabled(boolean loggingEnabled) {
-        if (loggingEnabled)
+        if (loggingEnabled) {
             this.loggingEnabled = 1;
-        else
+        } else {
             this.loggingEnabled = 0;
+        }
     }
     /**
      * 获取队列的名字
